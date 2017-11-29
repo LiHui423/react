@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var MyOpacity=React.createClass({
+        getInitialState:function () {
+            return {
+                opacityValue:1
+            }
+        },
+        componentDidMount:function () {
+            setInterval(function () {
+                var nowValue=this.state.opacityValue;
+                nowValue-=0.1;
+                if(nowValue<0){
+                    nowValue=1;
+                }
+                this.setState({opacityValue:nowValue})
+
+
+            }.bind(this),500)
+        },
+        render:function(){
+            return <div>
+                <h1 style={{opacity:this.state.opacityValue}}>HELLO</h1>
+            </div>
+        }
+    });
+    ReactDOM.render(
+        <MyOpacity/>,
+        document.getElementById('example')
+    );
+
+    </script>
+</body>
+</html>

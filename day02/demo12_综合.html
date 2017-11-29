@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var MyInputComponent=React.createClass({
+        handleChange:function(){
+          //将当前输入的内容发送给父组件
+            //console.log(this.refs.myInput.value);
+            this.props.funcSave(this.refs.myInput.value);
+        },
+        render:function(){
+            return <input ref="myInput" onChange={this.handleChange} type="text" placeholder="请输入"/>
+        }
+    });
+    var MyButtonComponent=React.createClass({
+        render:function(){
+            return <button>clickMe</button>
+        }
+    });
+    var MyMainComponent=React.createClass({
+        userMsg:'',
+        save:function(msg){
+            console.log('子组件传递的数据为：'+msg);
+            this.userMsg=msg;
+            //console.log('this.userMsg:'+this.userMsg);
+        },
+        render:function(){
+            return <div>
+                <MyInputComponent funcSave={this.save}></MyInputComponent>
+                <MyButtonComponent></MyButtonComponent>
+            </div>
+        }
+    });
+
+    ReactDOM.render(
+        <MyMainComponent></MyMainComponent>,
+        document.getElementById('example')
+    );
+</script>
+</body>
+</html>

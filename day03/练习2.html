@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title></title>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var MyInputComponent=React.createClass({
+        /*handleChange:function(){
+            // this.refs.myInput.value
+            this.props.funcSave(this.refs.myInput.value);
+        },*/
+        render:function(){
+            return <input ref="myInput" type="text"/>
+        }
+    });
+    var MyButtonComponent=React.createClass({
+        handleClick:function(){
+            var result=this.props.funcGet();
+            alert(result);
+        },
+        render:function(){
+            return <button onClick={this.handleClick}>clickMe</button>
+        }
+    });
+
+    //如何在main组件中直接得到用户输入的内容
+    //this.refs.UserInput.refs.myInput.value
+    var MyMainComponent=React.createClass({
+        /*userInput:'',
+        save:function(msg){
+            this.userInput=msg;
+        },*/
+        get:function(){
+            return this.refs.UserInput.refs.myInput.value;
+        },
+        render:function(){
+            return <div>
+                <MyInputComponent ref="UserInput"></MyInputComponent>
+                <MyButtonComponent funcGet={this.get}></MyButtonComponent>
+            </div>
+        }
+    }) ;
+    ReactDOM.render(
+            <MyMainComponent></MyMainComponent>,
+        document.getElementById('example')
+    );
+</script>
+</body>
+</html>

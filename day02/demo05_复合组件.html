@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="js/react.js"></script>
+    <script src="js/react-dom.js"></script>
+    <script src="js/browser.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var MyHeader=React.createClass({
+            render:function(){
+                return <div>
+                    <h1>这是页头</h1>
+                </div>
+            }
+        });
+        var MyFooter=React.createClass({
+            render:function(){
+                return <div>
+                    <h1>这是页脚</h1>
+                </div>
+            }
+        });
+        var MyContent=React.createClass({
+            render:function(){
+                return <div>
+                    <p>这是正文</p>
+                </div>
+            }
+        });
+        var MyIndex=React.createClass({
+            render:function(){
+                return <div>
+                    <MyHeader></MyHeader>
+                    <MyContent></MyContent>
+                    <MyFooter></MyFooter>
+                </div>
+            }
+        });
+        ReactDOM.render(
+            <MyIndex></MyIndex>,
+            document.getElementById('example')
+        );
+    </script>
+</body>
+</html>
